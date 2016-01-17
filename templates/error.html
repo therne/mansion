@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Error</title>
+    <style>
+      body {
+        font-family: 'Helvetica Neue', sans-serif;
+        background: #FAFAFA;
+        padding: 0;
+        margin: 0;
+      }
+
+      .error-header {
+        padding: 36px 40px 24px 40px;
+        margin: 0;
+      }
+      .error-name {
+        font-weight: 300;
+        font-size: 40px;
+        margin-top: 0px;
+        margin-bottom: 14px;
+        color: #333;
+      }
+
+      .divider {
+        width: 24px;
+        height: 1px;
+        background-color: #333;
+      }
+
+      .error-message {
+        color: #838383;
+        font-weight: 300;
+        font-size: 17px;
+        margin-top: 16px;
+      }
+
+      .stack {
+        width: 100%;
+        background-color: #E0E0E0;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .stack > pre {
+        margin: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 17px;
+        color: #444;
+        line-height: 23px;
+      }
+
+      .stack a {
+        color: #666;
+      }
+
+      .about {
+        color: #B0B0B0;
+        font-weight: 300;
+        font-size: 15px;
+        margin: 20px 40px;
+      }
+      .about a {
+        color: #ABABAB;
+      }
+
+      .container {
+        margin-right: auto;
+        margin-left: auto;
+      }
+      @media (min-width: 768px) {
+        .container {
+          width: 750px;
+        }
+      }
+      @media (min-width: 992px) {
+        .container {
+          width: 970px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="error-header">
+        <h1 class="error-name"><%= name %></h1>
+        <div class="divider"></div>
+        <p class="error-message"><%= message %></p>
+      </div>
+      <div class="stack">
+        <pre><%= stack %></pre>
+      </div>
+      <p class="about">This gorgeous error is powered by <a href="http://therne.github.io/mansion">Mansion</a> framework.</p>
+    </div>
+  </body>
+</html>

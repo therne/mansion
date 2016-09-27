@@ -1,55 +1,25 @@
-'use strict';
+/**
+ * Mansion - A full-stack framework based on Cottage
+ * Copyright (c) 2016 Therne
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ *   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ *   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ *   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ *   CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ *   TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ *   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
-module.exports = MansionFactory;
-
-var fs = require('fs');
-var koa = require('koa');
-var Path = require('path');
-var log = require('./lib/logger');
-var cottage = require('../cottage');
-var classic = require('./lib/classic');
-
-function MansionFactory(options) {
-    if (this instanceof MansionFactory) {
-        throw new Error("You need call 'mansion()' to create new router!");
-    }
-
-    var app = cottage(options);
-
-    app.importRoutes = function(path) {
-        importRecursive(app, path);
-    }
-
-    app.listen = function(port) {
-        koa().use(app).listen(8080);
-        log('Server started at http://localhost:%d/', port);
-    }
-
-    return app;
-}
-
-function importRecursive(router, path, rootPath) {
-    rootPath = rootPath || '';
-    if (path.indexOf('/') !== 0) {
-        // convert relative path to absolute path
-        path = Path.resolve(module.parent.filename, '..', path);
-    }
-
-    var files = fs.readdirSync(path);
-    for (var i in files) {
-        var name = files[i], filePath = Path.join(path, name);
-
-        if (fs.lstatSync(filePath).isDirectory()) {
-            importRecursive(router, path + '/' + name, rootPath + name + '/');
-            continue;
-        }
-
-        name = name.substring(0, name.length-3); // remove .js extension
-
-        var route = require(filePath.substring(0, filePath.length-3));
-        if (name == 'index') router.use('/' + rootPath, route);
-        else router.use('/' + rootPath + name, route);
-    }
-}
-
-MansionFactory.classic = classic;
+module.exports = require('./lib/mansion');
+//module.exports.Controller = require('./lib/controller');

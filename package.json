@@ -1,7 +1,7 @@
 {
   "name": "mansion",
   "version": "1.0.0",
-  "description": "A full-sized, convinient framework built on cottage.",
+  "description": "A full-sized, convinient framework based on cottage.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test"
@@ -18,9 +18,10 @@
   "homepage": "https://github.com/therne/mansion",
   "dependencies": {
     "colors": "^1.1.2",
-    "cottage": "^2.0.0",
-    "koa": "^1.1.2",
-    "koa-bodyparser": "^2.0.1",
+    "cottage": "^2.1.1",
+    "koa": "^1.2.4",
+    "koa-bodyparser": "^2.2.0",
+    "methods": "^1.1.2",
     "moment": "^2.10.6"
   }
 }

@@ -22,4 +22,6 @@
  */
 
 module.exports = require('./lib/mansion');
+module.exports.Logger = require('./lib/logger');
+
 //module.exports.Controller = require('./lib/controller');
